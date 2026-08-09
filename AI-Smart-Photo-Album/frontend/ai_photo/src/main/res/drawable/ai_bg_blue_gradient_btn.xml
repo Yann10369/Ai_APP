@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 纯蓝渐变按钮 (开始上传分析 / 确认保存) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="0"
+        android:startColor="#4A90E2"
+        android:endColor="#6FA8FF" />
+    <corners android:radius="100dp" />
+</shape>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  可编辑标签胶囊：纯白底 + 0.5dp 浅灰描边，全圆角 (32dp 胶囊形)。
+  用于 A/B/C 子卡内 flexbox 流式布局中的 chip。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFFFFF" />
+    <stroke
+        android:width="0.5dp"
+        android:color="#E5E8EE" />
+    <corners android:radius="100dp" />
+</shape>

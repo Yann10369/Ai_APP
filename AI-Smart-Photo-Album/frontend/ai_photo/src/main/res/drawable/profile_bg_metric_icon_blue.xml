@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  顶部指标小卡的"图标底"系列：淡色圆形背景。
+  用于 蓝 / 绿 / 紫 三个色系。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#1A4A90E2" />
+</shape>

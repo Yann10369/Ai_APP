@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 任务历史项卡：圆角 12dp + 极轻投影 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:bottom="1dp" android:right="1dp" android:left="1dp" android:top="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#0A000000" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+    <item android:bottom="2dp" android:right="2dp" android:left="2dp" android:top="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF" />
+            <corners android:radius="12dp" />
+        </shape>
+    </item>
+</layer-list>

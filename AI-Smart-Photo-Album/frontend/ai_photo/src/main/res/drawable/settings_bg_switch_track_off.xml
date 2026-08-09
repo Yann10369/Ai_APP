@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Switch 滑轨 (关)：浅灰胶囊 (#E5E8EE)。
+  紧凑版：高度 20dp
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#E5E8EE" />
+    <corners android:radius="100dp" />
+    <size android:height="20dp" />
+</shape>

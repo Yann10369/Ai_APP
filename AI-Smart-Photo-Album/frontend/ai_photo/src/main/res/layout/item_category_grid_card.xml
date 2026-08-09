@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    分类网格卡（1 行 4 列场景下使用）：
+    - 方形封面（76dp = 屏幕宽 360 - padding 16*2 - spacing 6*3 - card padding 4*4 列 ≈ 78dp, 留 76dp 适配）
+    - 名称 + 数量
+    - 整体 match_parent，由父 GridView 4 等分列宽
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="4dp"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <ImageView
+        android:id="@+id/ivCover"
+        android:layout_width="match_parent"
+        android:layout_height="76dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/home_bg_category_cover"
+        android:contentDescription="@string/category_browse_title" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="#1B1F2A"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:singleLine="true"
+        android:ellipsize="end" />
+
+    <TextView
+        android:id="@+id/tvCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#999999"
+        android:textSize="10sp"
+        android:singleLine="true" />
+</LinearLayout>

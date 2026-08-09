@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  分段控制器底轨：极浅灰胶囊 (#F2F4F7)，全圆角。
+  内部分两半，左半边被 settings_bg_segment_thumb_blue 覆盖。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#F2F4F7" />
+    <corners android:radius="100dp" />
+</shape>

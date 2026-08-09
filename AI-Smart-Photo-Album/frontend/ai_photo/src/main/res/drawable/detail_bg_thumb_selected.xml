@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 缩略图选中态（紧凑版）：白底 + 1.5dp 主题蓝描边，圆角 6dp -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#FFFFFF" />
+    <stroke
+        android:width="1.5dp"
+        android:color="#4A90E2" />
+    <corners android:radius="6dp" />
+</shape>

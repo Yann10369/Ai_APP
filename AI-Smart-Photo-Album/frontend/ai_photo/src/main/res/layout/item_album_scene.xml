@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 场景分类 item：3:4 封面 + 标题/数量/彩色胶囊 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- 3:4 封面 (固定尺寸) -->
+    <ImageView
+        android:id="@+id/ivCover"
+        android:layout_width="76dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/album_bg_scene_cover" />
+
+    <!-- 主标题 -->
+    <TextView
+        android:id="@+id/sceneName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:textColor="#1B1F2A"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:singleLine="true"
+        android:ellipsize="end" />
+
+    <!-- 数量 -->
+    <TextView
+        android:id="@+id/sceneCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:textColor="#999999"
+        android:textSize="10sp"
+        android:singleLine="true" />
+
+    <!-- 彩色胶囊标签 -->
+</LinearLayout>

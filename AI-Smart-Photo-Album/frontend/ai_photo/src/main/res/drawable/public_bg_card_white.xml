@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 白色功能卡：圆角 16dp + 极轻投影 (用一层偏移形状模拟 elevation 阴影) -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 阴影层：底部偏移 1dp、上下各 1dp 的深灰模糊 -->
+    <item android:bottom="2dp" android:right="1dp" android:left="1dp" android:top="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#0A000000" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+    <!-- 卡片本身 -->
+    <item android:bottom="3dp" android:right="2dp" android:left="2dp" android:top="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF" />
+            <corners android:radius="16dp" />
+        </shape>
+    </item>
+</layer-list>

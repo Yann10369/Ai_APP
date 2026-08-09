@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    单个分类卡模板 (78x~134dp)：封面 + 名称
+    历史版本：含"AI 精选 X 张"数量文本（已被移除）
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="78dp"
+    android:layout_height="wrap_content"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    android:orientation="vertical">
+
+    <!-- 封面 (3:4 长方形) -->
+    <ImageView
+        android:id="@+id/ivCover"
+        android:layout_width="78dp"
+        android:layout_height="96dp"
+        android:scaleType="centerCrop"
+        android:background="@drawable/home_bg_category_cover" />
+
+    <!-- 分类名称 -->
+    <TextView
+        android:id="@+id/categoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textColor="#1B1F2A"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:singleLine="true"
+        android:ellipsize="end" />
+</LinearLayout>

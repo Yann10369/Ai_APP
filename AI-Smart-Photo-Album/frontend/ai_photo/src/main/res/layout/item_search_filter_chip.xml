@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 标签筛选未选中 chip 模板：紧凑尺寸 26dp -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/chipText"
+    android:layout_width="wrap_content"
+    android:layout_height="26dp"
+    android:gravity="center"
+    android:background="@drawable/public_bg_chip_unselected"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:layout_marginEnd="6dp"
+    android:textColor="#1B1F2A"
+    android:textSize="11sp"
+    android:textStyle="bold"
+    android:singleLine="true" />

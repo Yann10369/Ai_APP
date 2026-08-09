@@ -1,0 +1,352 @@
+<resources>
+    <string name="app_name">AI_Photo</string>
+
+    <!-- ====== 登录页 ====== -->
+    <string name="login_title"><b>登录</b></string>
+    <string name="login_subtitle">欢迎使用 AI 智能相册</string>
+    <string name="login_account_hint">请输入账号</string>
+    <string name="login_password_hint">请输入密码</string>
+    <string name="login_btn">登 录</string>
+
+    <!-- ====== 主页 (activity_main) ====== -->
+    <string name="home_app_title"><b>智能分类相册</b></string>
+    <string name="home_slogan">AI 理解每一张照片，珍藏每一份回忆</string>
+    <string name="home_search_hint">搜索 "上周的海边照片" / "找有狗狗的照片"</string>
+    <string name="home_status_title"><b>AI 分析状态</b></string>
+    <string name="home_status_label">AI 分析中</string>
+    <string name="home_metric_analyzed">已分析</string>
+    <string name="home_metric_pending">待分析</string>
+    <string name="home_metric_tags">识别标签</string>
+    <string name="home_smart_album_title"><b>智能分类相册</b></string>
+    <string name="home_recent_photos_title"><b>最近照片</b></string>
+
+    <!-- ====== 相册页 ====== -->
+    <string name="album_title"><b>智能分类相册</b></string>
+    <string name="album_subtitle">AI 按场景、情绪与标签自动整理</string>
+    <string name="album_tab_scene">场景分类</string>
+    <string name="album_tab_emotion">情绪分类</string>
+    <string name="album_tab_tag">标签分类</string>
+    <string name="album_see_all"><b>查看全部</b></string>
+
+    <!-- ====== 分类详情页 ====== -->
+    <string name="category_detail_title"><b>分类详情</b></string>
+    <string name="category_detail_count">共 %1$d 张照片</string>
+    <string name="category_detail_back_cd">返回</string>
+
+    <!-- ====== 分类浏览页（双模式：list + detail） ====== -->
+    <string name="category_browse_title"><b>分类浏览</b></string>
+    <string name="category_browse_subtitle">按场景、情绪或标签筛选分类</string>
+    <string name="category_browse_empty">暂无分类</string>
+    <string name="category_browse_empty_detail">暂无照片</string>
+    <string name="category_tab_all">全部</string>
+    <string name="category_browse_photos_subtitle">%1$s · 共 %2$d 张照片</string>
+
+    <!-- ====== 照片列表页（时间顺序） ====== -->
+    <string name="photo_list_title"><b>照片列表</b></string>
+    <string name="photo_list_subtitle">按时间倒序展示所有照片</string>
+    <string name="photo_list_back_cd">返回</string>
+    <string name="photo_list_empty">暂无照片</string>
+    <string name="photo_list_section_today">今天</string>
+    <string name="photo_list_section_yesterday">昨天</string>
+    <string name="photo_list_section_earlier">日期</string>
+
+    <!-- ====== 搜索页 ====== -->
+    <string name="search_title"><b>智能搜索</b></string>
+    <string name="search_subtitle">用一句话找到想要的照片</string>
+    <string name="search_hint">去年夏天在海边大笑的照片</string>
+    <string name="search_action">搜索</string>
+    <string name="search_history_title"><b>搜索历史</b></string>
+    <string name="search_recommend_title"><b>推荐搜索</b></string>
+    <string name="search_ai_title"><b>AI 理解结果</b></string>
+    <string name="search_ai_footer">已理解你的需求，将为你查找符合以上特征的照片</string>
+    <string name="search_result_count">找到 36 张相关照片</string>
+    <string name="search_sort_default">最新优先</string>
+    <string name="search_filter_btn">筛选</string>
+    <string name="search_selected_label">已选条件：</string>
+    <string name="search_clear_all">🗑️ 清空条件</string>
+    <string name="search_result_ai_count">共 128 张</string>
+    <string name="search_result_ai_title"><b>✨ 同时满足所选条件的照片</b></string>
+    <string name="search_category_scene">场景</string>
+    <string name="search_category_mood">情绪</string>
+    <string name="search_category_time">时间</string>
+    <string name="search_category_tag">标签</string>
+    <string name="search_ai_scene">场景</string>
+    <string name="search_ai_mood">情绪</string>
+    <string name="search_ai_tag">标签</string>
+    <string name="search_ai_scene_value">海边</string>
+    <string name="search_ai_mood_value">开心</string>
+    <string name="search_ai_tag_value">夏天、朋友、大笑</string>
+
+    <!-- ====== 底部导航 (统一文案) ====== -->
+    <string name="nav_home">首页</string>
+    <string name="nav_album">相册</string>
+    <string name="nav_ai">AI 分析</string>
+    <string name="nav_me">我的</string>
+
+    <!-- ====== "我的" 个人中心页 ====== -->
+    <string name="profile_title"><b>我的</b></string>
+    <string name="profile_subtitle">查看个人数据与收藏内容</string>
+    <string name="profile_setting">设置</string>
+    <string name="profile_avatar">头像</string>
+    <string name="profile_user_name">晴晴</string>
+    <string name="profile_companion_prefix">智能相册已陪伴你 </string>
+    <string name="profile_companion_days">--</string>
+    <string name="profile_companion_suffix"> 天</string>
+    <string name="profile_edit">编辑资料</string>
+
+    <!-- 编辑资料 dialog -->
+    <string name="profile_edit_title">编辑资料</string>
+    <string name="profile_edit_change_avatar">更换头像</string>
+    <string name="profile_edit_username_label">用户名</string>
+    <string name="profile_edit_save">保存</string>
+    <string name="profile_edit_cancel">取消</string>
+    <string name="profile_avatar_toast_saved">头像已更新</string>
+    <string name="profile_avatar_toast_pick_fail">未选择图片</string>
+
+    <!-- 数据统计 -->
+    <string name="profile_stats_title"><b>数据统计</b></string>
+    <string name="profile_metric_total_label">照片总量</string>
+    <string name="profile_metric_total_value">--</string>
+    <string name="profile_metric_analyzed_label">已分析</string>
+    <string name="profile_metric_analyzed_value">--</string>
+    <string name="profile_metric_fav_label">收藏数量</string>
+    <string name="profile_metric_fav_value">--</string>
+    <string name="profile_unit_zhang">张</string>
+
+    <!-- 场景分布 -->
+    <string name="profile_scene_sea">海边</string>
+    <string name="profile_scene_sea_pct">--</string>
+    <string name="profile_scene_travel">旅行</string>
+    <string name="profile_scene_travel_pct">--</string>
+    <string name="profile_scene_food">美食</string>
+    <string name="profile_scene_food_pct">--</string>
+    <string name="profile_scene_daily">日常</string>
+    <string name="profile_scene_daily_pct">--</string>
+    <string name="profile_scene_pet">宠物</string>
+    <string name="profile_scene_pet_pct">--</string>
+
+    <!-- 场景分类 -->
+    <string name="profile_scene_title"><b>场景分类</b></string>
+
+    <!-- 情绪分布 -->
+    <string name="profile_emotion_title"><b>情绪分布</b></string>
+    <string name="profile_emotion_happy">快乐</string>
+    <string name="profile_emotion_happy_pct">--</string>
+    <string name="profile_emotion_calm">平静</string>
+    <string name="profile_emotion_calm_pct">--</string>
+    <string name="profile_emotion_silly">搞怪</string>
+    <string name="profile_emotion_silly_pct">--</string>
+
+    <!-- 标签分布 -->
+    <string name="profile_tags_title"><b>标签分布</b></string>
+    <string name="profile_tag_rank_1">1</string>
+    <string name="profile_tag_rank_2">2</string>
+    <string name="profile_tag_rank_3">3</string>
+    <string name="profile_tag_rank_4">4</string>
+    <string name="profile_tag_rank_5">5</string>
+    <string name="profile_tag_rank_6">6</string>
+    <string name="profile_tag_1">人物</string>
+    <string name="profile_tag_1_pct">--</string>
+    <string name="profile_tag_1_count">--</string>
+    <string name="profile_tag_2">风景</string>
+    <string name="profile_tag_2_pct">--</string>
+    <string name="profile_tag_2_count">--</string>
+    <string name="profile_tag_3">旅行</string>
+    <string name="profile_tag_3_pct">--</string>
+    <string name="profile_tag_3_count">--</string>
+    <string name="profile_tag_4">美食</string>
+    <string name="profile_tag_4_pct">--</string>
+    <string name="profile_tag_4_count">--</string>
+    <string name="profile_tag_5">日常</string>
+    <string name="profile_tag_5_pct">--</string>
+    <string name="profile_tag_5_count">--</string>
+    <string name="profile_tag_6">宠物</string>
+    <string name="profile_tag_6_pct">--</string>
+    <string name="profile_tag_6_count">--</string>
+
+    <!-- 我的收藏 -->
+    <string name="profile_fav_title"><b>我的收藏</b></string>
+    <string name="profile_see_all">查看全部</string>
+    <string name="profile_page_prev">上一页</string>
+    <string name="profile_page_next">下一页</string>
+    <string name="profile_page_info">1 / 1</string>
+
+    <!-- ====== AI 分析页 ====== -->
+    <string name="ai_title_blue">AI</string>
+    <string name="ai_title_black"><b>分析</b></string>
+    <string name="ai_subtitle">图片上传、识别进度与结果管理</string>
+
+    <!-- 上传入口卡 -->
+    <string name="ai_upload_title"><b>图片导入入口</b></string>
+    <string name="ai_upload_selected_prefix">已选择 </string>
+    <string name="ai_upload_count">0</string>
+    <string name="ai_upload_count_suffix"> 张照片</string>
+    <string name="ai_upload_tag_album">本地相册</string>
+    <string name="ai_upload_tag_auth">已授权访问</string>
+    <string name="ai_upload_hint">支持单张或批量选择</string>
+    <string name="ai_upload_btn_reselect">重新选择</string>
+    <string name="ai_upload_btn_start">开始上传分析</string>
+
+    <!-- 批量上传任务卡 -->
+    <string name="ai_batch_title"><b>批量上传任务</b></string>
+    <string name="ai_batch_status">上传中</string>
+    <string name="ai_batch_total_label">总数</string>
+    <string name="ai_batch_uploaded_label">已上传</string>
+    <string name="ai_batch_success_label">成功</string>
+    <string name="ai_batch_failed_label">失败</string>
+    <string name="ai_batch_failed_msg">3 张照片上传失败</string>
+    <string name="ai_batch_failed_reason">网络超时或文件损坏</string>
+    <string name="ai_batch_retry">失败重传</string>
+
+    <!-- AI 进度卡 -->
+    <string name="ai_progress_title"><b>AI 分析进度</b></string>
+    <string name="ai_step_scene">场景识别中</string>
+    <string name="ai_step_mood">情绪识别中</string>
+    <string name="ai_step_tag">标签生成中</string>
+    <string name="ai_step_desc">描述生成中</string>
+    <string name="ai_step_save">结果保存中</string>
+
+    <!-- 单体任务状态 -->
+    <string name="ai_task_analyzing">正在生成标签</string>
+    <string name="ai_task_failed">分析失败，可重试</string>
+    <string name="ai_task_done">分析完成</string>
+    <string name="ai_task_status_analyzing">分析中</string>
+    <string name="ai_task_status_failed">失败</string>
+    <string name="ai_task_status_done">完成</string>
+
+    <!-- 预览卡 -->
+    <string name="ai_preview_title"><b>最近分析结果预览</b></string>
+    <string name="ai_preview_scene_label">场景：</string>
+    <string name="ai_preview_scene">海边</string>
+    <string name="ai_preview_mood_label">情绪：</string>
+    <string name="ai_preview_mood">开心</string>
+    <string name="ai_preview_tag_label">标签：</string>
+    <string name="ai_preview_desc_label">AI 描述：</string>
+    <string name="ai_preview_desc_text">AI 描述：傍晚海边，夕阳把天空染成橘红。朋友们的笑声随着海风飘远，浪花轻拍礁石，夏天就在这一瞬间被永远记录下来。</string>
+    <string name="ai_preview_view">查看完整结果</string>
+    <string name="ai_preview_redo">重新分析</string>
+    <string name="ai_preview_save">确认保存</string>
+
+    <!-- 任务历史 -->
+    <string name="ai_history_title"><b>任务历史</b></string>
+    <string name="ai_history_continuing">未完成</string>
+    <string name="ai_history_finished_at">今天 09:32 完成</string>
+    <string name="ai_history_btn_continue">继续分析</string>
+    <string name="ai_history_btn_view">查看</string>
+    <string name="ai_history_status_ongoing">进行中</string>
+    <string name="ai_history_status_finished">已完成</string>
+
+    <!-- ====== "设置" 页 ====== -->
+    <string name="settings_title"><b>设置</b></string>
+    <string name="settings_subtitle">管理智能分类集合与展示规则</string>
+    <string name="settings_gear_cd">设置入口</string>
+
+    <!-- 分类集合管理卡 -->
+    <string name="settings_category_title"><b>分类集合管理</b></string>
+    <string name="settings_category_subtitle">修改后将影响 AI 自动分类、筛选与搜索结果展示</string>
+
+    <!-- 子卡 A：场景分类 -->
+    <string name="settings_letter_a">A</string>
+    <string name="settings_letter_b">B</string>
+    <string name="settings_letter_c">C</string>
+    <string name="settings_scene_card_title"><b>场景分类</b></string>
+    <string name="settings_emotion_card_title"><b>情绪分类</b></string>
+    <string name="settings_tag_card_title"><b>标签分类</b></string>
+    <string name="settings_add_category">新增分类</string>
+    <string name="settings_add_tag">新增标签</string>
+    <string name="settings_reset_default">恢复默认</string>
+
+    <!-- 场景分类标签 -->
+    <string name="settings_tag_food">美食</string>
+    <string name="settings_tag_scenery">风景</string>
+    <string name="settings_tag_sea">海边</string>
+    <string name="settings_tag_travel">旅行</string>
+    <string name="settings_tag_daily">日常</string>
+    <string name="settings_tag_pet">宠物</string>
+    <string name="settings_tag_selfie">自拍</string>
+    <string name="settings_tag_party">聚会</string>
+    <string name="settings_tag_sunset">日落</string>
+    <string name="settings_tag_flower">花艺</string>
+    <string name="settings_tag_sport">运动</string>
+
+    <!-- 情绪分类标签 -->
+    <string name="settings_emotion_happy">开心</string>
+    <string name="settings_emotion_calm">平静</string>
+    <string name="settings_emotion_silly">搞怪</string>
+    <string name="settings_emotion_tired">疲惫</string>
+    <string name="settings_emotion_lonely">孤单</string>
+    <string name="settings_emotion_excited">兴奋</string>
+    <string name="settings_emotion_touched">感动</string>
+    <string name="settings_emotion_angry">生气</string>
+    <string name="settings_emotion_relaxed">放松</string>
+
+    <!-- 标签分类标签 -->
+    <string name="settings_label_person">人物</string>
+    <string name="settings_label_food">美食</string>
+    <string name="settings_label_animal">动物</string>
+    <string name="settings_label_plant">植物</string>
+    <string name="settings_label_building">建筑</string>
+    <string name="settings_label_vehicle">交通</string>
+    <string name="settings_label_outfit">穿搭</string>
+    <string name="settings_label_summer">夏天</string>
+    <string name="settings_label_night">夜晚</string>
+    <string name="settings_label_friend">朋友</string>
+    <string name="settings_label_couple">情侣</string>
+    <string name="settings_label_work">工作</string>
+
+    <!-- 展示规则卡 -->
+    <string name="settings_rules_title"><b>展示规则</b></string>
+    <string name="settings_rules_count_label">分类页显示数量</string>
+    <string name="settings_rules_show_5">显示 5 个</string>
+    <string name="settings_rules_show_all">显示全部</string>
+    <string name="settings_rules_auto_enable">新标签自动启用</string>
+    <string name="settings_rules_user_edit">允许用户手动调整标签</string>
+
+    <!-- 底部操作按钮 -->
+    <string name="settings_btn_cancel">取消</string>
+    <string name="settings_btn_save">保存修改</string>
+
+    <!-- 图标描述 -->
+    <string name="settings_cd_sparkle">AI</string>
+    <string name="settings_cd_cube">分类集合</string>
+    <string name="settings_cd_sliders">展示规则</string>
+    <string name="settings_cd_plus">新增</string>
+    <string name="settings_cd_reset">恢复默认</string>
+    <string name="settings_cd_edit">编辑</string>
+    <string name="settings_cd_delete">删除</string>
+
+    <!-- ====== 设置页对话框文案 ====== -->
+    <string name="settings_dialog_already">你已经在设置页</string>
+    <string name="settings_dialog_delete_title">删除分类</string>
+    <string name="settings_dialog_delete_message">确认删除分类 \"%1$s\" 吗？</string>
+    <string name="settings_dialog_delete_confirm">删除</string>
+    <string name="settings_dialog_add_title">新增分类</string>
+    <string name="settings_dialog_add_title_typed">新增 %1$s 分类</string>
+    <string name="settings_dialog_add_hint">新分类名称（不含 emoji）</string>
+    <string name="settings_dialog_add_confirm">确定</string>
+    <string name="settings_dialog_reset_title">重置分类</string>
+    <string name="settings_dialog_reset_title_typed">重置 %1$s 分类</string>
+    <string name="settings_dialog_reset_message">将删除该类型下所有用户自定义分类。确认？</string>
+    <string name="settings_dialog_reset_message_full">将删除所有用户自定义分类（id &gt; 60），恢复为初始 60 项。确认？</string>
+    <string name="settings_dialog_reset_confirm">重置</string>
+    <string name="settings_dialog_cancel">取消</string>
+    <string name="settings_toast_saved">已保存设置</string>
+    <string name="settings_toast_deleted">已删除</string>
+    <string name="settings_toast_added">已添加 (#%1$d)</string>
+    <string name="settings_toast_reset">已重置为 %1$d 项</string>
+    <string name="settings_toast_reset_full">已重置为 %1$d 项初始分类</string>
+
+    <!-- ====== 照片详情页 ====== -->
+    <string name="detail_title"><b>照片详情</b></string>
+    <string name="detail_ai_tags_title"><b>AI 标签</b></string>
+    <string name="detail_ai_desc_title"><b>AI 描述</b></string>
+    <string name="detail_scene_title"><b>场景识别</b></string>
+    <string name="detail_emotion_title"><b>人物情绪</b></string>
+    <string name="detail_similar_title"><b>相似照片</b></string>
+    <string name="detail_see_more"><b>查看更多</b></string>
+    <string name="detail_redo"><b>重新分析</b></string>
+    <string name="detail_edit_tag"><b>修改标签</b></string>
+    <string name="detail_action_fav"><b>收藏</b></string>
+    <string name="detail_action_share"><b>分享</b></string>
+    <string name="detail_action_delete"><b>删除</b></string>
+</resources>

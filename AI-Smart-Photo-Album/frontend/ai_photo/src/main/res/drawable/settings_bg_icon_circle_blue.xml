@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  卡片头部的图标底：淡蓝色 (10% alpha) 圆形。
+  用于分类集合 / 展示规则卡左侧的图标容器。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#1A4A90E2" />
+</shape>

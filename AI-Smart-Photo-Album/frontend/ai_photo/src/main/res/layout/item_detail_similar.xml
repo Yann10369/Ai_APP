@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    相似照片 item（紧凑版）
+    - 宽 72dp, 高 52dp, 圆角 6dp
+-->
+<View xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/similarThumb"
+    android:layout_width="72dp"
+    android:layout_height="52dp"
+    android:layout_marginEnd="6dp"
+    android:background="@drawable/detail_bg_thumb_unselected" />

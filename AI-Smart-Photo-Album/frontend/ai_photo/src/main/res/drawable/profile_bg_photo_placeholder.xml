@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  "我的收藏" 2x3 网格照片占位：浅蓝灰渐变 + 12dp 圆角。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="135"
+        android:startColor="#E6EEFF"
+        android:endColor="#D5DFF0" />
+    <corners android:radius="12dp" />
+</shape>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  首页 Pure Background
+  层次结构（自下而上）：
+    1. 基底渐变：浅蓝 (#E8F2FF) → 白色 (#FFFFFF)，自上而下
+    2. 流体波纹：两条半透明波浪曲线，模拟空气流动
+    3. 半透明圆形光晕 (Bokeh)：3 个不同尺寸的圆形，营造呼吸感
+-->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 1. 基底渐变 -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="#E8F2FF"
+                android:centerColor="#F5F9FF"
+                android:endColor="#FFFFFF"
+                android:type="linear" />
+        </shape>
+    </item>
+
+    <!-- 2. 流体波纹 A（左下大弧） -->
+    <item>
+        <shape android:shape="rectangle">
+            <path
+                android:fillColor="#15000000"
+                android:pathData="M-50,820 C150,720 350,880 600,760 C850,640 1050,780 1300,700 L1300,1300 L-50,1300 Z" />
+        </shape>
+    </item>
+
+    <!-- 3. 流体波纹 B（右上斜线） -->
+    <item>
+        <shape android:shape="rectangle">
+            <path
+                android:fillColor="#10000000"
+                android:pathData="M-50,720 C200,650 400,800 700,720 C950,650 1150,780 1300,720 L1300,1300 L-50,1300 Z" />
+        </shape>
+    </item>
+
+    <!-- 4. Bokeh 圆形光晕（不同尺寸 / 不同位置 / 半透明） -->
+    <item
+        android:width="180dp"
+        android:height="180dp"
+        android:gravity="top|end"
+        android:right="-40dp"
+        android:top="-40dp">
+        <shape android:shape="oval">
+            <solid android:color="#254A90E2" />
+        </shape>
+    </item>
+
+    <item
+        android:width="120dp"
+        android:height="120dp"
+        android:gravity="bottom|start"
+        android:left="-30dp"
+        android:bottom="160dp">
+        <shape android:shape="oval">
+            <solid android:color="#2000C4B6" />
+        </shape>
+    </item>
+
+    <item
+        android:width="90dp"
+        android:height="90dp"
+        android:gravity="bottom|end"
+        android:right="40dp"
+        android:bottom="220dp">
+        <shape android:shape="oval">
+            <solid android:color="#189013FE" />
+        </shape>
+    </item>
+
+    <item
+        android:width="60dp"
+        android:height="60dp"
+        android:gravity="top|start"
+        android:left="40dp"
+        android:top="200dp">
+        <shape android:shape="oval">
+            <solid android:color="#184A90E2" />
+        </shape>
+    </item>
+
+</layer-list>

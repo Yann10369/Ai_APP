@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 已选条件气泡：紧凑尺寸 22dp -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/selectedTag"
+    android:layout_width="wrap_content"
+    android:layout_height="22dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:background="@drawable/public_bg_chip_selected"
+    android:paddingStart="8dp"
+    android:paddingEnd="5dp"
+    android:layout_marginEnd="5dp">
+
+    <TextView
+        android:id="@+id/selectedTagText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:singleLine="true" />
+
+    <ImageView
+        android:id="@+id/selectedTagClose"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginStart="4dp"
+        android:src="@drawable/search_ic_close_white"
+        android:contentDescription="移除" />
+</LinearLayout>

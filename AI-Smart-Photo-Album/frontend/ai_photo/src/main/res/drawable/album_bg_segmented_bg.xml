@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Segmented Tabs 容器：浅灰底 + 胶囊 + 加深投影 (3 层叠加模拟弥散阴影) -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 阴影层 1：最外圈弥散 (向下偏移 3dp，弱色大范围) -->
+    <item android:bottom="0dp" android:right="0dp" android:left="0dp" android:top="3dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#1A1B1F2A" />
+            <corners android:radius="22dp" />
+        </shape>
+    </item>
+    <!-- 阴影层 2：中圈聚焦 (向下偏移 2dp，稍深) -->
+    <item android:bottom="1dp" android:right="0dp" android:left="0dp" android:top="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#14000000" />
+            <corners android:radius="22dp" />
+        </shape>
+    </item>
+    <!-- 卡片本身 -->
+    <item android:bottom="3dp" android:right="0dp" android:left="0dp" android:top="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#F2F4F7" />
+            <corners android:radius="22dp" />
+        </shape>
+    </item>
+</layer-list>

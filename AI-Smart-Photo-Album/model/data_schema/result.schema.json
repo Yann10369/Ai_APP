@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft-07/schema#",
+  "title": "PhotoAIAnalysisResult",
+  "description": "模型端输出结果（与 backend AIAnalysisResult 对齐）",
+  "type": "object",
+  "required": ["description", "scene", "emotion", "tags"],
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "中文自然语言描述，不超过 40 字"
+    },
+    "scene": {
+      "type": "object",
+      "required": ["name", "confidence"],
+      "properties": {
+        "name": {"type": "string"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "emotion": {
+      "type": "object",
+      "required": ["name", "confidence"],
+      "properties": {
+        "name": {"type": "string"},
+        "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "tags": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "confidence"],
+        "properties": {
+          "name": {"type": "string"},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    }
+  }
+}

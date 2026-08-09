@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 黄色胶囊 (淡黄底 + 橘黄字) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#1AFFB74D" />
+    <corners android:radius="100dp" />
+</shape>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 蓝紫渐变进度条：底色 + clip 渐变 + 端点圆角 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="8dp" />
+            <solid android:color="#F0F0F5" />
+        </shape>
+    </item>
+
+    <item android:id="@android:id/progress">
+        <clip>
+            <shape>
+                <corners android:radius="8dp" />
+                <gradient
+                    android:angle="0"
+                    android:startColor="#4A90E2"
+                    android:endColor="#9013FE" />
+            </shape>
+        </clip>
+    </item>
+
+</layer-list>

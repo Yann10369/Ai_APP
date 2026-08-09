@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  标签分布进度条：极浅灰底 (高度 3dp)。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#F0F0F5" />
+    <corners android:radius="100dp" />
+</shape>

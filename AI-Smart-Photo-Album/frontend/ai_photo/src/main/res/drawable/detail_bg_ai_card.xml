@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- AI 信息卡（紧凑版）：白底圆角 14dp + 极轻投影 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:bottom="1dp" android:right="1dp" android:left="1dp" android:top="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#0A000000" />
+            <corners android:radius="14dp" />
+        </shape>
+    </item>
+    <item android:bottom="2dp" android:right="1dp" android:left="1dp" android:top="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF" />
+            <corners android:radius="14dp" />
+        </shape>
+    </item>
+</layer-list>

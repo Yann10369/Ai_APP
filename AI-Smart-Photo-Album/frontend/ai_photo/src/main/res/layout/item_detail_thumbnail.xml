@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    缩略图胶卷条 item（紧凑版）
+    - 4:3 比例, 宽 52dp, 高 40dp
+    - 圆角 6dp
+    - 选中态：外层 1.5dp 主题蓝描边
+-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/thumbRoot"
+    android:layout_width="52dp"
+    android:layout_height="40dp"
+    android:layout_marginEnd="6dp"
+    android:background="@drawable/detail_bg_thumb_unselected">
+
+    <ImageView
+        android:id="@+id/thumbImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="2dp"
+        android:background="@drawable/detail_bg_thumb_unselected"
+        android:scaleType="centerCrop" />
+</FrameLayout>

@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+.env
+.env.local
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+
+# Node / Web
+node_modules/
+.npm/
+.yarn/
+
+# Android / Gradle
+.gradle/
+build/
+*.apk
+*.aab
+*.keystore
+local.properties
+captures/
+
+# IDE / 编辑器
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# 日志 / 临时
+*.log
+*.tmp
+*.bak
+
+# 数据集 / 大文件（按项目约定）
+data/origin/
+data/thumb/
+*.h5
+*.parquet
+*.pkl
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# 模型权重
+*.pt
+*.pth
+*.onnx
+*.bin
+models/
+weights/
+
+# 测试 / 缓存
+.cache/
+.pytest_cache/
+.coverage

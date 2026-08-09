@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Top 1 金色六边形徽章。
+  point-up 正六边形 (viewBox 24x24)，center (12,12)，边长 10。
+  顶点: top(12,2) 右上(20.78,7) 右下(20.78,17) bottom(12,22) 左下(3.22,17) 左上(3.22,7)
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="22dp"
+    android:height="22dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <path
+        android:fillColor="#FFC83E"
+        android:pathData="M12,2L20.78,7L20.78,17L12,22L3.22,17L3.22,7z" />
+</vector>

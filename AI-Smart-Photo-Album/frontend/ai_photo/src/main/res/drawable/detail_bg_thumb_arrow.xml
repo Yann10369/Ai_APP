@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 缩略图翻页按钮：白底圆形 + 极轻投影 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:bottom="1dp" android:right="1dp" android:left="1dp" android:top="2dp">
+        <shape android:shape="oval">
+            <solid android:color="#0A000000" />
+        </shape>
+    </item>
+    <item android:bottom="2dp" android:right="2dp" android:left="2dp" android:top="3dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF" />
+        </shape>
+    </item>
+</layer-list>

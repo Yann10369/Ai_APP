@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- DonutChartView 自定义属性 (颜色/百分比) -->
+    <declare-styleable name="DonutChartView">
+        <!-- 段1 颜色 (默认蓝) -->
+        <attr name="dcvColor1" format="color" />
+        <attr name="dcvColor2" format="color" />
+        <attr name="dcvColor3" format="color" />
+        <attr name="dcvColor4" format="color" />
+        <attr name="dcvColor5" format="color" />
+        <!-- 各段百分比 (整数, 总和应为 100) -->
+        <attr name="dcvPct1" format="integer" />
+        <attr name="dcvPct2" format="integer" />
+        <attr name="dcvPct3" format="integer" />
+        <attr name="dcvPct4" format="integer" />
+        <attr name="dcvPct5" format="integer" />
+        <!-- 环宽 dp -->
+        <attr name="dcvStrokeWidth" format="dimension" />
+    </declare-styleable>
+</resources>

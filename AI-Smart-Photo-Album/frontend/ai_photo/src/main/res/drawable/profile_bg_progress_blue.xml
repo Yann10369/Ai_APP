@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  情绪分布进度条：蓝色实色（全圆角）。
+  ProgressBar 通过 clip + 自身宽度即可实现百分比。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="0"
+        android:startColor="#4A90E2"
+        android:endColor="#6FA8FF" />
+    <corners android:radius="100dp" />
+</shape>

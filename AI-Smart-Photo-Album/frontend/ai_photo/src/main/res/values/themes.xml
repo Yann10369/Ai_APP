@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- 应用全局窗口背景：让图片在全屏范围内铺满，避免冷启动白屏 -->
+        <item name="android:windowBackground">@drawable/public_background</item>
+
+        <!-- 把项目的主题蓝 #4A90E2 覆盖到 Material 3 默认的紫色，
+             让 Button / EditText / ProgressBar / Switch 等默认控件都使用项目色 -->
+        <item name="colorPrimary">@color/theme_blue</item>
+        <item name="colorPrimaryVariant">@color/theme_blue</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorAccent">@color/theme_blue</item>
+    </style>
+
+    <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
+</resources>

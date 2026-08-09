@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    登录页（极简版）：
+    标题块顶部对齐（与 main 一致：AI logo + 标题 + sparkle + 副标题）
+    + 账号/密码/登录按钮整体垂直居中。
+    用 ScrollView 包裹，避免小屏键盘弹起时被挤压。
+-->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/public_background"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="top"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="32dp">
+
+        <!-- 顶部标题块：与主页结构一致（垂直 LinearLayout 包裹：横向标题行 + 副标题行） -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:orientation="vertical">
+
+            <!-- 横向行：logo + title + sparkle -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- 渐变色 "Ai" 专属 Logo -->
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:contentDescription="AI Logo"
+                    android:src="@drawable/brand_ai_logo" />
+
+                <TextView
+                    android:id="@+id/loginTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@string/login_title"
+                    android:textColor="#1B1F2A"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="28dp"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="AI"
+                    android:src="@drawable/ai_ic_sparkle_multi" />
+            </LinearLayout>
+
+            <!-- 副标题行：Slogan（默认左对齐到图标） -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="@string/login_subtitle"
+                android:textColor="#7B8597"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <!-- 登陆部分（账号 / 密码 / 按钮）：整体垂直居中 -->
+        <!-- 用 layout_weight=1 + gravity=center 把整组控件推到中间 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="vertical">
+
+            <!-- 账号输入 -->
+            <EditText
+                android:id="@+id/loginAccount"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/ai_bg_card_white_12"
+                android:hint="@string/login_account_hint"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#1B1F2A"
+                android:textColorHint="#999999"
+                android:textSize="14sp" />
+
+            <!-- 密码输入 -->
+            <EditText
+                android:id="@+id/loginPassword"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/ai_bg_card_white_12"
+                android:hint="@string/login_password_hint"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:textColor="#1B1F2A"
+                android:textColorHint="#999999"
+                android:textSize="14sp" />
+
+            <!-- 登录按钮 -->
+            <Button
+                android:id="@+id/loginBtn"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/login_bg_btn_theme"
+                android:backgroundTint="@null"
+                android:fontFamily="sans-serif-black"
+                android:letterSpacing="0.2"
+                android:text="@string/login_btn"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

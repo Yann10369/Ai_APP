@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  分段控制器激活态滑块：主题蓝胶囊形 (#4A90E2)。
+  通过 layout_margin 调整到左侧形成 "显示 5 个" 选中效果。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#4A90E2" />
+    <corners android:radius="100dp" />
+</shape>

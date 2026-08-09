@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 增强型搜索栏：白底胶囊 48dp + 轻投影 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:top="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#0F1B1F2A" />
+            <corners android:radius="24dp" />
+        </shape>
+    </item>
+    <item android:bottom="1dp" android:top="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF" />
+            <corners android:radius="24dp" />
+        </shape>
+    </item>
+</layer-list>

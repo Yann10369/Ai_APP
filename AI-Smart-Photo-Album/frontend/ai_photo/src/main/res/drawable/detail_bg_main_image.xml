@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 主图占位（紧凑版）：渐变蓝紫模拟海面，16:10 长方形，圆角 14dp -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:angle="270"
+                android:startColor="#6FA8FF"
+                android:centerColor="#9DC3FF"
+                android:endColor="#E6EEFF" />
+            <corners android:radius="14dp" />
+        </shape>
+    </item>
+</layer-list>

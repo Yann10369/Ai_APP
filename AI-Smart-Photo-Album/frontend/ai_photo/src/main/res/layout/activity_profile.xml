@@ -1,0 +1,1736 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  "我的" 个人中心页面 (Pixel-perfect)
+  ============================================
+  全局规范：
+   - 页面背景：profile_background (浅蓝径向 + 极浅灰底)
+   - 屏幕左右 padding：16dp
+   - 卡片：纯白 16dp 圆角 + 极轻弥散投影
+
+  五大模块：
+   1. Header (标题 + 副标题 + 设置 squircle)
+   2. User Profile Card (头像 + 用户名 + VIP 标签 + 陪伴天数 + 编辑按钮)
+   3. Data Statistics Dashboard
+      3.1 Top Metrics Row (3 等分)
+      3.2 Middle Charts Row (左: 场景环形图 / 右: 情绪条形)
+      3.3 Bottom Tags Row (Top6 柱状排行)
+   4. My Favorites (2x3 网格 + 翻页)
+   5. Bottom Nav (4 Tab, "我的" 高亮)
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/profileRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/public_background"
+    tools:context=".ProfileActivity">
+
+    <!-- ============== 滚动区 ============== -->
+    <ScrollView
+        android:id="@+id/profileScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="16dp">
+
+            <!-- ============== 1. 顶部标题与操作栏 ============== -->
+            <LinearLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- 左侧：标题 + 副标题 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profile_title"
+                            android:textColor="#1B1F2A"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="28dp"
+                            android:layout_marginStart="5dp"
+                            android:contentDescription="AI"
+                            android:src="@drawable/ai_ic_sparkle_multi" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text="@string/profile_subtitle"
+                        android:textColor="#7B8597"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <!-- 右侧：设置 squircle 按钮 -->
+                <ImageView
+                    android:id="@+id/headerSettingBtn"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:padding="8dp"
+                    android:background="@drawable/profile_bg_squircle_btn"
+                    android:src="@drawable/profile_ic_setting"
+                    android:contentDescription="@string/profile_setting" />
+
+            </LinearLayout>
+
+            <!-- ============== 2. 个人信息卡片 ============== -->
+            <LinearLayout
+                android:id="@+id/profileCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/public_bg_card_white"
+                android:paddingStart="14dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="14dp"
+                android:paddingBottom="14dp">
+
+                <!-- 左侧头像 -->
+                <FrameLayout
+                    android:id="@+id/profileAvatarFrame"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/profile_bg_avatar" />
+
+                    <ImageView
+                        android:id="@+id/profileAvatar"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/profile_ic_avatar_default"
+                        android:contentDescription="@string/profile_avatar" />
+                </FrameLayout>
+
+                <!-- 中间信息区 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical">
+
+                    <!-- 上：用户名 + VIP 标签 -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/profileName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profile_user_name"
+                            android:textColor="#1B1F2A"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <!-- 下：陪伴天数文本 (含高亮数字) -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profile_companion_prefix"
+                            android:textColor="#7B8597"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/profileDays"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profile_companion_days"
+                            android:textColor="#4A90E2"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/profile_companion_suffix"
+                            android:textColor="#7B8597"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 右侧：编辑资料按钮 -->
+                <TextView
+                    android:id="@+id/profileEditBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/profile_bg_edit_btn"
+                    android:drawableStart="@drawable/profile_ic_edit"
+                    android:drawablePadding="4dp"
+                    android:text="@string/profile_edit"
+                    android:textColor="#4A90E2"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- ============== 3. 数据统计 (3 张独立 metric card) ============== -->
+
+            <!-- 3.0 顶部 3 等分指标卡 (整体卡片，内部三个 metric_card) -->
+            <LinearLayout
+                android:id="@+id/statsTopCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical"
+                android:background="@drawable/public_bg_card_white"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <!-- 内嵌小标题 -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/profile_stats_title"
+                    android:textColor="#1B1F2A"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <!-- ========== 3.1 顶部三等分指标 ========== -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                <!-- ========== 3.1 顶部三等分指标 ========== -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <!-- 指标 1：照片总量 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="4dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/profile_bg_metric_card"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp">
+
+                        <!-- 左：图标 -->
+                        <FrameLayout
+                            android:layout_width="28dp"
+                            android:layout_height="28dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/profile_metric_photo"
+                                android:contentDescription="照片" />
+                        </FrameLayout>
+
+                        <!-- 右：标题 + 总量（垂直堆叠，左对齐，与图标相邻） -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_metric_total_label"
+                                android:textColor="#7B8597"
+                                android:textSize="11sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="bottom">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:tag="metricTotalValue"
+                                    android:text="@string/profile_metric_total_value"
+                                    android:textColor="#4A90E2"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="2dp"
+                                    android:layout_marginBottom="1dp"
+                                    android:text="@string/profile_unit_zhang"
+                                    android:textColor="#7B8597"
+                                    android:textSize="11sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- 指标 2：已分析 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/profile_bg_metric_card"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp">
+
+                        <!-- 左：图标 -->
+                        <FrameLayout
+                            android:layout_width="28dp"
+                            android:layout_height="28dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/profile_metric_analyzed"
+                                android:contentDescription="已分析" />
+                        </FrameLayout>
+
+                        <!-- 右：标题 + 数量（垂直堆叠，左对齐，与图标相邻） -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_metric_analyzed_label"
+                                android:textColor="#7B8597"
+                                android:textSize="11sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="bottom">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:tag="metricAnalyzedValue"
+                                    android:text="@string/profile_metric_analyzed_value"
+                                    android:textColor="#00C4B6"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="2dp"
+                                    android:layout_marginBottom="1dp"
+                                    android:text="@string/profile_unit_zhang"
+                                    android:textColor="#7B8597"
+                                    android:textSize="11sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- 指标 3：收藏数量 -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="4dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/profile_bg_metric_card"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp">
+
+                        <!-- 左：图标 -->
+                        <FrameLayout
+                            android:layout_width="28dp"
+                            android:layout_height="28dp">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/profile_metric_favorite"
+                                android:contentDescription="收藏" />
+                        </FrameLayout>
+
+                        <!-- 右：标题 + 数量（垂直堆叠，左对齐，与图标相邻） -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_metric_fav_label"
+                                android:textColor="#7B8597"
+                                android:textSize="11sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="bottom">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:tag="metricFavoritesValue"
+                                    android:text="@string/profile_metric_fav_value"
+                                    android:textColor="#9013FE"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="2dp"
+                                    android:layout_marginBottom="1dp"
+                                    android:text="@string/profile_unit_zhang"
+                                    android:textColor="#7B8597"
+                                    android:textSize="11sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            </LinearLayout>
+
+            <!-- ========== 3.2 中部图表双卡：左 场景分布 / 右 情绪分布（左右并列） ========== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <!-- 左卡：场景分布 -->
+                <LinearLayout
+                    android:id="@+id/statsSceneCard"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="5dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/public_bg_card_white"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <!-- 场景分布左上角小标题 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:text="@string/profile_scene_title"
+                        android:textColor="#1B1F2A"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <!-- 左右布局：左侧 Donut，右侧 排名列表 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <!-- 左：圆分布图 -->
+                        <com.ai_photo.DonutChartView
+                            android:id="@+id/donutScene"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp" />
+
+                        <!-- 右：排名列表 -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical">
+
+                                <View
+                                    android:layout_width="7dp"
+                                    android:layout_height="7dp"
+                                    android:tag="sceneDot1"
+                                    android:background="@drawable/profile_bg_metric_icon_blue"
+                                    android:backgroundTint="#4A90E2" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layout_marginStart="6dp"
+                                    android:tag="sceneName1"
+                                    android:text="@string/profile_scene_sea"
+                                    android:textColor="#7B8597"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:tag="scenePct1"
+                                    android:text="@string/profile_scene_sea_pct"
+                                    android:textColor="#1B1F2A"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:gravity="center_vertical">
+
+                                <View
+                                    android:layout_width="7dp"
+                                    android:layout_height="7dp"
+                                    android:tag="sceneDot2"
+                                    android:background="@drawable/profile_bg_metric_icon_blue"
+                                    android:backgroundTint="#00C4B6" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layout_marginStart="6dp"
+                                    android:tag="sceneName2"
+                                    android:text="@string/profile_scene_travel"
+                                    android:textColor="#7B8597"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:tag="scenePct2"
+                                    android:text="@string/profile_scene_travel_pct"
+                                    android:textColor="#1B1F2A"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:gravity="center_vertical">
+
+                                <View
+                                    android:layout_width="7dp"
+                                    android:layout_height="7dp"
+                                    android:tag="sceneDot3"
+                                    android:background="@drawable/profile_bg_metric_icon_blue"
+                                    android:backgroundTint="#9013FE" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layout_marginStart="6dp"
+                                    android:tag="sceneName3"
+                                    android:text="@string/profile_scene_food"
+                                    android:textColor="#7B8597"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:tag="scenePct3"
+                                    android:text="@string/profile_scene_food_pct"
+                                    android:textColor="#1B1F2A"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:gravity="center_vertical">
+
+                                <View
+                                    android:layout_width="7dp"
+                                    android:layout_height="7dp"
+                                    android:tag="sceneDot4"
+                                    android:background="@drawable/profile_bg_metric_icon_blue"
+                                    android:backgroundTint="#FFB74D" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layout_marginStart="6dp"
+                                    android:tag="sceneName4"
+                                    android:text="@string/profile_scene_daily"
+                                    android:textColor="#7B8597"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:tag="scenePct4"
+                                    android:text="@string/profile_scene_daily_pct"
+                                    android:textColor="#1B1F2A"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:gravity="center_vertical">
+
+                                <View
+                                    android:layout_width="7dp"
+                                    android:layout_height="7dp"
+                                    android:tag="sceneDot5"
+                                    android:background="@drawable/profile_bg_metric_icon_blue"
+                                    android:backgroundTint="#FF7AAE" />
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:layout_marginStart="6dp"
+                                    android:tag="sceneName5"
+                                    android:text="@string/profile_scene_pet"
+                                    android:textColor="#7B8597"
+                                    android:textSize="10sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:tag="scenePct5"
+                                    android:text="@string/profile_scene_pet_pct"
+                                    android:textColor="#1B1F2A"
+                                    android:textSize="10sp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 右卡：情绪分布 -->
+                <LinearLayout
+                    android:id="@+id/statsEmotionCard"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="5dp"
+                    android:orientation="vertical"
+                    android:background="@drawable/public_bg_card_white"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <!-- 情绪分布左上角小标题 -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="6dp"
+                        android:text="@string/profile_emotion_title"
+                        android:textColor="#1B1F2A"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+
+                        <FrameLayout
+                            android:layout_width="20dp"
+                            android:layout_height="20dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_metric_icon_blue"
+                                android:backgroundTint="#4A90E2" />
+
+                            <ImageView
+                                android:layout_width="11dp"
+                                android:layout_height="11dp"
+                                android:layout_gravity="center"
+                                android:tag="emotionIcon1"
+                                android:src="@drawable/profile_ic_emoji_happy"
+                                android:contentDescription="快乐" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:tag="emotionName1"
+                            android:text="@string/profile_emotion_happy"
+                            android:textColor="#1B1F2A"
+                            android:textSize="10sp" />
+
+                        <FrameLayout
+                            android:id="@+id/emotionTrack1"
+                            android:layout_width="0dp"
+                            android:layout_height="6dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:background="@drawable/profile_bg_progress_track">
+
+                            <View
+                                android:id="@+id/emotionFill1"
+                                android:layout_width="46dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_progress_blue" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:tag="emotionPct1"
+                            android:text="@string/profile_emotion_happy_pct"
+                            android:textColor="#1B1F2A"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center_vertical">
+
+                        <FrameLayout
+                            android:layout_width="20dp"
+                            android:layout_height="20dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_metric_icon_blue"
+                                android:backgroundTint="#00C4B6" />
+
+                            <ImageView
+                                android:layout_width="11dp"
+                                android:layout_height="11dp"
+                                android:layout_gravity="center"
+                                android:tag="emotionIcon2"
+                                android:src="@drawable/profile_ic_emoji_calm"
+                                android:contentDescription="平静" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:tag="emotionName2"
+                            android:text="@string/profile_emotion_calm"
+                            android:textColor="#1B1F2A"
+                            android:textSize="10sp" />
+
+                        <FrameLayout
+                            android:id="@+id/emotionTrack2"
+                            android:layout_width="0dp"
+                            android:layout_height="6dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:background="@drawable/profile_bg_progress_track">
+
+                            <View
+                                android:id="@+id/emotionFill2"
+                                android:layout_width="30dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_progress_green" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:tag="emotionPct2"
+                            android:text="@string/profile_emotion_calm_pct"
+                            android:textColor="#1B1F2A"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="7dp"
+                        android:gravity="center_vertical">
+
+                        <FrameLayout
+                            android:layout_width="20dp"
+                            android:layout_height="20dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_metric_icon_blue"
+                                android:backgroundTint="#9013FE" />
+
+                            <ImageView
+                                android:layout_width="11dp"
+                                android:layout_height="11dp"
+                                android:layout_gravity="center"
+                                android:tag="emotionIcon3"
+                                android:src="@drawable/profile_ic_emoji_silly"
+                                android:contentDescription="搞怪" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:tag="emotionName3"
+                            android:text="@string/profile_emotion_silly"
+                            android:textColor="#1B1F2A"
+                            android:textSize="10sp" />
+
+                        <FrameLayout
+                            android:id="@+id/emotionTrack3"
+                            android:layout_width="0dp"
+                            android:layout_height="6dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:background="@drawable/profile_bg_progress_track">
+
+                            <View
+                                android:id="@+id/emotionFill3"
+                                android:layout_width="18dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_progress_purple" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="6dp"
+                            android:tag="emotionPct3"
+                            android:text="@string/profile_emotion_silly_pct"
+                            android:textColor="#1B1F2A"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ========== 3.3 标签分布独立卡 ========== -->
+            <LinearLayout
+                android:id="@+id/statsBottomCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:background="@drawable/public_bg_card_white"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profile_tags_title"
+                    android:textColor="#1B1F2A"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/tagsRow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:weightSum="6">
+
+                    <!-- 标签柱 1 (Top1 金) -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <!-- hex 徽章 + 标签 (左右排布) -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="22dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@drawable/profile_bg_hex_gold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="22dp"
+                                android:layout_marginStart="3dp"
+                                android:tag="tagName1"
+                                android:text="@string/profile_tag_1"
+                                android:textColor="#1B1F2A"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:tag="tagPct1"
+                            android:text="@string/profile_tag_1_pct"
+                            android:textColor="#1B1F2A"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <FrameLayout
+                            android:id="@+id/tagTrack1"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/profile_bg_tag_progress_track">
+
+                            <View
+                                android:id="@+id/tagFill1"
+                                android:layout_width="32dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_tag_progress_blue" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:tag="tagCount1"
+                            android:text="@string/profile_tag_1_count"
+                            android:textColor="#B5BCC8"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <!-- 标签柱 2 (Top2 银) -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <!-- hex 徽章 + 标签 (左右排布) -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="22dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@drawable/profile_bg_hex_silver" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="3dp"
+                                android:tag="tagName2"
+                                android:text="@string/profile_tag_2"
+                                android:textColor="#1B1F2A"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:tag="tagPct2"
+                            android:text="@string/profile_tag_2_pct"
+                            android:textColor="#1B1F2A"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <FrameLayout
+                            android:id="@+id/tagTrack2"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/profile_bg_tag_progress_track">
+
+                            <View
+                                android:id="@+id/tagFill2"
+                                android:layout_width="24dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_tag_progress_blue" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:tag="tagCount2"
+                            android:text="@string/profile_tag_2_count"
+                            android:textColor="#B5BCC8"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <!-- 标签柱 3 (Top3 铜) -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <!-- hex 徽章 + 标签 (左右排布) -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="22dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:src="@drawable/profile_bg_hex_bronze" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="3dp"
+                                android:tag="tagName3"
+                                android:text="@string/profile_tag_3"
+                                android:textColor="#1B1F2A"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:tag="tagPct3"
+                            android:text="@string/profile_tag_3_pct"
+                            android:textColor="#1B1F2A"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <FrameLayout
+                            android:id="@+id/tagTrack3"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/profile_bg_tag_progress_track">
+
+                            <View
+                                android:id="@+id/tagFill3"
+                                android:layout_width="18dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_tag_progress_blue" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:tag="tagCount3"
+                            android:text="@string/profile_tag_3_count"
+                            android:textColor="#B5BCC8"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <!-- 标签柱 4 (灰) -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <!-- 灰圆徽章 + 标签 (左右排布) -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="22dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <View
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:background="@drawable/profile_bg_badge_gray" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="3dp"
+                                android:tag="tagName4"
+                                android:text="@string/profile_tag_4"
+                                android:textColor="#7B8597"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:tag="tagPct4"
+                            android:text="@string/profile_tag_4_pct"
+                            android:textColor="#7B8597"
+                            android:textSize="11sp" />
+
+                        <FrameLayout
+                            android:id="@+id/tagTrack4"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/profile_bg_tag_progress_track">
+
+                            <View
+                                android:id="@+id/tagFill4"
+                                android:layout_width="12dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_tag_progress_gray" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:tag="tagCount4"
+                            android:text="@string/profile_tag_4_count"
+                            android:textColor="#B5BCC8"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <!-- 标签柱 5 (灰) -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <!-- 灰圆徽章 + 标签 (左右排布) -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="22dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <View
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:background="@drawable/profile_bg_badge_gray" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="3dp"
+                                android:tag="tagName5"
+                                android:text="@string/profile_tag_5"
+                                android:textColor="#7B8597"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:tag="tagPct5"
+                            android:text="@string/profile_tag_5_pct"
+                            android:textColor="#7B8597"
+                            android:textSize="11sp" />
+
+                        <FrameLayout
+                            android:id="@+id/tagTrack5"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/profile_bg_tag_progress_track">
+
+                            <View
+                                android:id="@+id/tagFill5"
+                                android:layout_width="9dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_tag_progress_gray" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:tag="tagCount5"
+                            android:text="@string/profile_tag_5_count"
+                            android:textColor="#B5BCC8"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+
+                    <!-- 标签柱 6 (灰) -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal">
+
+                        <!-- 灰圆徽章 + 标签 (左右排布) -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="22dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+
+                            <View
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:background="@drawable/profile_bg_badge_gray" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="3dp"
+                                android:tag="tagName6"
+                                android:text="@string/profile_tag_6"
+                                android:textColor="#7B8597"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:tag="tagPct6"
+                            android:text="@string/profile_tag_6_pct"
+                            android:textColor="#7B8597"
+                            android:textSize="11sp" />
+
+                        <FrameLayout
+                            android:id="@+id/tagTrack6"
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/profile_bg_tag_progress_track">
+
+                            <View
+                                android:id="@+id/tagFill6"
+                                android:layout_width="6dp"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_tag_progress_gray" />
+                        </FrameLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:tag="tagCount6"
+                            android:text="@string/profile_tag_6_count"
+                            android:textColor="#B5BCC8"
+                            android:textSize="10sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ============== 4. 我的收藏 ============== -->
+            <LinearLayout
+                android:id="@+id/favoritesSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <!-- 标题行 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/profile_fav_title"
+                        android:textColor="#1B1F2A"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profile_see_all"
+                        android:textColor="#4A90E2"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        android:drawableEnd="@drawable/home_ic_arrow_right"
+                        android:drawablePadding="2dp" />
+                </LinearLayout>
+
+                <!-- 3 列 x 3 行 网格 -->
+                <LinearLayout
+                    android:id="@+id/favoritesGrid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <!-- Row 1 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="4dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_photo_placeholder" />
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="top|end"
+                                android:layout_margin="6dp"
+                                android:src="@drawable/profile_ic_heart_filled"
+                                android:contentDescription="取消收藏" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_photo_placeholder" />
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="top|end"
+                                android:layout_margin="6dp"
+                                android:src="@drawable/profile_ic_heart_filled"
+                                android:contentDescription="取消收藏" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="4dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_photo_placeholder" />
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="top|end"
+                                android:layout_margin="6dp"
+                                android:src="@drawable/profile_ic_heart_filled"
+                                android:contentDescription="取消收藏" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- Row 2 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="4dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_photo_placeholder" />
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="top|end"
+                                android:layout_margin="6dp"
+                                android:src="@drawable/profile_ic_heart_filled"
+                                android:contentDescription="取消收藏" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_photo_placeholder" />
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="top|end"
+                                android:layout_margin="6dp"
+                                android:src="@drawable/profile_ic_heart_filled"
+                                android:contentDescription="取消收藏" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="4dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_photo_placeholder" />
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="top|end"
+                                android:layout_margin="6dp"
+                                android:src="@drawable/profile_ic_heart_filled"
+                                android:contentDescription="取消收藏" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- Row 3 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal">
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_weight="1"
+                            android:layout_marginEnd="4dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_photo_placeholder" />
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="top|end"
+                                android:layout_margin="6dp"
+                                android:src="@drawable/profile_ic_heart_filled"
+                                android:contentDescription="取消收藏" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginEnd="4dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_photo_placeholder" />
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="top|end"
+                                android:layout_margin="6dp"
+                                android:src="@drawable/profile_ic_heart_filled"
+                                android:contentDescription="取消收藏" />
+                        </FrameLayout>
+
+                        <FrameLayout
+                            android:layout_width="0dp"
+                            android:layout_height="100dp"
+                            android:layout_weight="1"
+                            android:layout_marginStart="4dp">
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/profile_bg_photo_placeholder" />
+
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:layout_gravity="top|end"
+                                android:layout_margin="6dp"
+                                android:src="@drawable/profile_ic_heart_filled"
+                                android:contentDescription="取消收藏" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 翻页控件 -->
+                <LinearLayout
+                    android:id="@+id/pagination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/btnPrevPage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:gravity="center"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:background="@drawable/profile_bg_pagination_btn"
+                        android:text="@string/profile_page_prev"
+                        android:textColor="#4A90E2"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/tvPageInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="@string/profile_page_info"
+                        android:textColor="#7B8597"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/btnNextPage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="28dp"
+                        android:gravity="center"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:background="@drawable/profile_bg_pagination_btn"
+                        android:text="@string/profile_page_next"
+                        android:textColor="#4A90E2"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ============== 5. 底部导航栏 (52dp) ============== -->
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:weightSum="4"
+        android:elevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/app_ic_home"
+                app:tint="#999999"
+                android:contentDescription="@string/nav_home" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="@string/nav_home"
+                android:textColor="#999999"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navAlbum"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/app_ic_album"
+                app:tint="#999999"
+                android:contentDescription="@string/nav_album" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="@string/nav_album"
+                android:textColor="#999999"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navAI"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/app_ic_ai"
+                app:tint="#999999"
+                android:contentDescription="@string/nav_ai" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="@string/nav_ai"
+                android:textColor="#999999"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navMe"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/app_ic_user"
+                app:tint="#4A90E2"
+                android:contentDescription="@string/nav_me" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="@string/nav_me"
+                android:textColor="#4A90E2"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

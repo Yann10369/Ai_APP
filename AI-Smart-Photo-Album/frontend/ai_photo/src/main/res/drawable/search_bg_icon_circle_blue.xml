@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  搜索页 AI 理解卡 图标底：浅色主题色 (#4A90E2 @ 12% alpha) 圆形。
+  用于场景 / 情绪 / 标签三个核心小卡片左侧的图标容器。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="#1F4A90E2" />
+</shape>

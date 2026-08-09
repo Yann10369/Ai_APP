@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 公共筛选图标：漏斗（来自 过滤.xml，跨屏公共） -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="20dp"
+    android:height="20dp"
+    android:viewportWidth="1024"
+    android:viewportHeight="1024"
+    android:tint="#1B1F2A">
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M875.9,148L629.1,425.4 616,440.2v435.7l-2.2,-1.8 -2.4,-1.5L408,743.4V440.2l-13.1,-14.8L148.1,148h727.8m0,-52H148.1c-44.4,0 -68.4,52.1 -39.5,85.8L356,460v283.4c0,17.8 9.1,34.4 24.1,43.9l203.4,129.2c9.9,7.9 21.2,11.5 32.2,11.5 26.9,0 52.2,-21.2 52.2,-52.1V460l247.4,-278.2c29,-33.7 5,-85.8 -39.4,-85.8z" />
+</vector>

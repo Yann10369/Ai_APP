@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    分类浏览页（三模式）：
+    - type_list 模式（默认入口 = 相册"查看全部"）：只显示某一 type（scene/emotion/tag）
+      的全部分类，作为 1 行 4 列网格（NonScrollGridView，numColumns=4）。
+      点击某个分类卡 → 跳 PhotoListActivity (MODE_CATEGORY) 拉该分类下照片。
+    - list 模式（兼容旧入口）：复用 AlbumActivity 的 3 段分类结构
+      + segmentedTabs 多一个"全部"tab（默认选中），通过控制 3 个 section 的 VISIBLE/GONE 过滤。
+    - detail 模式：segmentedTabs + 3 section 全部 GONE，显示 4 列照片网格。
+
+    资源复用：
+    - header / segmentedTabs / 3 sections / bottomNav 结构沿用 activity_album.xml
+    - item_album_scene / item_album_emotion / item_album_tag 原样复用
+    - 详情模式照片 item 用 item_photo.xml（与最近照片 4 列网格一致）
+    - type_list 模式分类卡 = item_category_grid_card.xml（统一一张，背景按 type 切换）
+-->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/categoryRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/album_background"
+    tools:context=".CategoryBrowseActivity">
+
+    <!-- 内容滚动区 -->
+    <ScrollView
+        android:id="@+id/categoryScroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNav">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="10dp">
+
+            <!-- ============== 1. 顶部标题与操作栏 ============== -->
+            <LinearLayout
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- 返回按钮 -->
+                <ImageView
+                    android:id="@+id/btnBack"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="6dp"
+                    android:background="@drawable/public_bg_header_action"
+                    android:src="@drawable/detail_ic_arrow_left"
+                    android:contentDescription="@string/category_detail_back_cd" />
+
+                <!-- 左侧：标题 + 副标题 -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/headerTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/category_browse_title"
+                        android:textColor="#1B1F2A"
+                        android:textSize="19sp"
+                        android:textStyle="bold"
+                        android:singleLine="true"
+                        android:ellipsize="end" />
+
+                    <TextView
+                        android:id="@+id/headerSubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:text="@string/category_browse_subtitle"
+                        android:textColor="#888888"
+                        android:textSize="10sp"
+                        android:singleLine="true" />
+                </LinearLayout>
+
+                <!-- 右侧：搜索 / 更多 圆形按钮 -->
+                <ImageView
+                    android:id="@+id/headerSearchBtn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:padding="6dp"
+                    android:background="@drawable/public_bg_header_action"
+                    android:src="@drawable/public_ic_search"
+                    android:contentDescription="搜索" />
+
+                <ImageView
+                    android:id="@+id/headerMoreBtn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="6dp"
+                    android:padding="6dp"
+                    android:background="@drawable/public_bg_header_action"
+                    android:src="@drawable/public_ic_more"
+                    android:contentDescription="更多" />
+            </LinearLayout>
+
+            <!-- ============== 2. Segmented Tabs (全部 / 场景 / 情绪 / 标签) ============== -->
+
+            <!-- ============== 3. 场景分类 (水平滑动) — 列表模式 ============== -->
+
+            <!-- ============== 4. 情绪分类 (水平滑动) — 列表模式 ============== -->
+
+            <!-- ============== 5. 标签分类 (2 列网格) — 列表模式 ============== -->
+
+            <!-- ============== 6. 4 列分类网格 — type_list 模式 ============== -->
+            <com.ai_photo.NonScrollGridView
+                android:id="@+id/categoryGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:numColumns="4"
+                android:horizontalSpacing="6dp"
+                android:verticalSpacing="6dp"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                android:stretchMode="columnWidth"
+                android:visibility="gone" />
+
+            <!-- ============== 7. 4 列照片网格 — 详情模式 ============== -->
+            <com.ai_photo.NonScrollGridView
+                android:id="@+id/photoGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:numColumns="4"
+                android:horizontalSpacing="6dp"
+                android:verticalSpacing="6dp"
+                android:scrollbars="none"
+                android:overScrollMode="never"
+                android:stretchMode="columnWidth"
+                android:visibility="gone" />
+
+            <!-- 空状态 / 加载中文案 -->
+            <TextView
+                android:id="@+id/emptyText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:textColor="#7B8597"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:text="加载中…" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- ============== 7. 底部导航栏 (52dp) ============== -->
+    <LinearLayout
+        android:id="@+id/bottomNav"
+        android:layout_width="0dp"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:weightSum="4"
+        android:elevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/app_ic_home"
+                app:tint="#999999"
+                android:contentDescription="首页" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="@string/nav_home"
+                android:textColor="#999999"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navAlbum"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/app_ic_album"
+                app:tint="#4A90E2"
+                android:contentDescription="相册" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="@string/nav_album"
+                android:textColor="#4A90E2"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navAI"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/app_ic_ai"
+                app:tint="#999999"
+                android:contentDescription="AI 发现" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="@string/nav_ai"
+                android:textColor="#999999"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navMe"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/app_ic_user"
+                app:tint="#999999"
+                android:contentDescription="我的" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="@string/nav_me"
+                android:textColor="#999999"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

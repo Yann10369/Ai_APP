@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  情绪分布：横向进度条底槽（极浅灰圆角）。
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="#F0F0F5" />
+    <corners android:radius="100dp" />
+</shape>

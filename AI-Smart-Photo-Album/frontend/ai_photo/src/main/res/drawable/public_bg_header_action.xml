@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 顶部圆形操作按钮：白底 + 轻投影（来自 album_bg_header_action，跨屏公共） -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 阴影层：向下偏移 1dp 形成弥散投影 -->
+    <item android:bottom="0dp" android:right="0dp" android:left="0dp" android:top="1dp">
+        <shape android:shape="oval">
+            <solid android:color="#0F1B1F2A" />
+        </shape>
+    </item>
+    <!-- 圆形本身 -->
+    <item android:bottom="1dp" android:right="0dp" android:left="0dp" android:top="0dp">
+        <shape android:shape="oval">
+            <solid android:color="#FFFFFF" />
+        </shape>
+    </item>
+</layer-list>

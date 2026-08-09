@@ -1,0 +1,6 @@
+# 模型端独立依赖
+# 注意：模型端实际运行在 backend 的 .venv 中
+# 这里只列出"模型端专属"的包；通用依赖（fastapi / sqlalchemy / pillow）已在 backend 中。
+
+# 阿里云百炼（DashScope）多模态视觉模型，使用官方 openai 兼容 SDK
+openai>=1.0

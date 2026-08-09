@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- ============== 主题色板 (Pixel-perfect) ============== -->
+    <!-- 主题蓝 / 进度起始 -->
+    <color name="theme_blue">#4A90E2</color>
+    <!-- 亮紫 / 进度终止 -->
+    <color name="theme_purple">#9013FE</color>
+    <!-- 青绿 / 数字 3 -->
+    <color name="theme_teal">#00C4B6</color>
+
+    <!-- 文本颜色 -->
+    <color name="text_primary">#1B1F2A</color>
+    <color name="text_secondary">#7B8597</color>
+    <color name="text_tertiary">#888888</color>
+    <color name="text_quaternary">#999999</color>
+    <color name="text_hint">#B5BCC8</color>
+
+    <!-- ============== 背景/装饰 (原 Logo 背景) ============== -->
+    <color name="bg_gradient_start">#F2F4FF</color>
+    <color name="bg_gradient_center">#FAFCFF</color>
+    <color name="bg_gradient_end">#E6EEFF</color>
+    <color name="halo_blue_light">#3D7CC9FF</color>
+    <color name="halo_purple_light">#3D6E8FFF</color>
+    <color name="halo_blue_strong">#557CCBFF</color>
+    <color name="halo_white">#80FFFFFF</color>
+    <color name="logo_blue">#4A7CF7</color>
+    <color name="logo_text">#1B1F2A</color>
+    <color name="subtitle_text">#7B8597</color>
+    <color name="sparkle_color">#5B8DF8</color>
+
+    <!-- ============== 看板/卡片 ============== -->
+    <!-- 浅极灰页面底色（背景叠加层） -->
+    <color name="page_bg_top">#F2F4FF</color>
+    <color name="page_bg_bottom">#FFFFFF</color>
+    <color name="card_white">#FFFFFF</color>
+    <color name="card_blue_start">#4A90E2</color>
+    <color name="card_blue_end">#6FA8FF</color>
+    <color name="card_blue_accent">#5B9BFF</color>
+
+    <!-- 搜索栏 / 芯片 浅灰底 -->
+    <color name="surface_gray">#F2F4F7</color>
+    <color name="surface_gray_strong">#E8ECF2</color>
+    <color name="divider_gray">#E5E8EE</color>
+    <color name="divider_gray_light">#EFF1F5</color>
+    <color name="track_gray">#F0F0F5</color>
+
+    <!-- 状态胶囊 (AI 分析中) -->
+    <color name="status_label_bg">#1A4A90E2</color>
+
+    <!-- 时间标签 (40% 黑) -->
+    <color name="time_tag_bg">#66000000</color>
+
+    <!-- 阴影色 (用于 backgroundTint 兼容) -->
+    <color name="shadow_soft">#1A000000</color>
+
+    <!-- ============== AI 分析页 (Pixel-perfect) ============== -->
+    <!-- 状态色 -->
+    <color name="status_blue">#4A90E2</color>
+    <color name="status_blue_bg">#1A4A90E2</color>
+    <color name="status_red">#E02020</color>
+    <color name="status_red_bg">#1AE02020</color>
+    <color name="status_green">#1FBA82</color>
+    <color name="status_green_bg">#1A1FBA82</color>
+    <color name="status_orange">#FF8A33</color>
+    <color name="status_orange_bg">#1AFF8A33</color>
+
+    <!-- 浅标签底色 (淡蓝/淡绿) -->
+    <color name="tag_blue_bg">#E8F0FE</color>
+    <color name="tag_green_bg">#E3F4EC</color>
+
+    <!-- 节点时间线 -->
+    <color name="timeline_active">#4A90E2</color>
+    <color name="timeline_inactive">#E5E8EE</color>
+
+    <!-- 渐变按钮 -->
+    <color name="btn_blue_start">#4A90E2</color>
+    <color name="btn_blue_end">#6FA8FF</color>
+
+    <!-- 页面背景渐变 (蓝→白) -->
+    <color name="ai_bg_top">#EAF1FF</color>
+    <color name="ai_bg_bottom">#F8F9FA</color>
+</resources>

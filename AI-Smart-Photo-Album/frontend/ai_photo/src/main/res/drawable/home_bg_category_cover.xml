@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 分类封面色：浅蓝灰渐变 (3:4 卡片占位) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <gradient
+        android:angle="135"
+        android:startColor="#E6EEFF"
+        android:endColor="#C7D6F2"
+        android:type="linear" />
+    <corners android:radius="12dp" />
+</shape>
