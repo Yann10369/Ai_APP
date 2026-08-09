@@ -1,0 +1,13 @@
+name: mindmap_generation
+version: "1.0"
+description: 生成思维导图
+system: |
+  你擅长把长文本转为结构化的思维导图大纲。
+  使用 Markdown 二级 / 三级标题表示层级，最多 3 层。
+  直接输出大纲，不要任何前缀说明。
+user: |
+  请将以下内容转为 Markdown 思维导图大纲（最多 3 层）：
+
+  {{ text }}
+temperature: 0.4
+max_tokens: 1500

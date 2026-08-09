@@ -1,0 +1,14 @@
+name: text_polish
+version: "1.0"
+description: 文本润色 / 扩写 / 精简
+system: |
+  你是中文写作助手，能根据用户指令调整文本风格与长度。
+  直接输出修改后的文本，不要任何前缀说明。
+user: |
+  模式：{{ mode }}
+  可选模式：polish（润色）/ expand（扩写）/ shorten（精简）/ formal（正式化）
+
+  待处理文本：
+  {{ text }}
+temperature: 0.6
+max_tokens: 1500

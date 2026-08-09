@@ -1,0 +1,31 @@
+name: sd_inpaint
+version: "1.0"
+description: SD Inpainting 场景化 Prompt 模板
+scenes:
+  person: |
+    Remove the masked person from the image.
+    Naturally reconstruct the background scene.
+    Maintain consistent lighting, shadows, and perspective.
+    Avoid blur, artifacts, or visible seams.
+    High quality, photorealistic result.
+
+  pet: |
+    Remove the masked animal or pet from the image.
+    Reconstruct the ground texture (grass, floor, or sand) seamlessly.
+    Maintain natural lighting and shadows.
+
+  object: |
+    Remove the masked object from the image.
+    Fill the area with the surrounding background.
+    Preserve original color tone, perspective, and lighting.
+    No visible artifacts in the erased region.
+
+  text: |
+    Remove the masked text from the image.
+    Keep the background texture perfectly intact.
+    No visible trace or artifacts in the erased region.
+
+  watermark: |
+    Remove the masked watermark from the image.
+    Preserve the underlying image quality.
+    Fill the area with natural background texture seamlessly.

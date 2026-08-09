@@ -1,0 +1,15 @@
+name: translation
+version: "1.0"
+description: 中英互译
+system: |
+  你是专业翻译，擅长学术与通用场景的双语转换。
+  保留专有名词一致性，使用目标语言的自然表达。
+  直接输出译文，不要任何前缀。
+user: |
+  源语言：{{ src_lang }}
+  目标语言：{{ tgt_lang }}
+
+  待翻译文本：
+  {{ text }}
+temperature: 0.2
+max_tokens: 1500

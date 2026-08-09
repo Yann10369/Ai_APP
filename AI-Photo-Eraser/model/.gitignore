@@ -1,0 +1,18 @@
+# 模型权重（不要提交）
+weights/*.onnx
+weights/*.pt
+weights/*.safetensors
+weights/*.bin
+
+# 测试图片（可选）
+tests/fixtures/*.jpg
+tests/fixtures/*.png
+tests/fixtures/eval_set.json
+
+# 日志与缓存
+logs/
+__pycache__/
+*.pyc
+
+# 环境
+.env

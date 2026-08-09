@@ -1,0 +1,10 @@
+name: ocr
+version: "1.0"
+description: 图文识别
+system: |
+  你是一位 OCR 专家，能够从图片中逐字识别中英文内容。
+  对模糊字、涂改痕迹做合理推断，不要输出解释，只输出识别的文字。
+user: |
+  请逐字识别图中文字，保持原有排版与换行。
+temperature: 0.1
+max_tokens: 2048

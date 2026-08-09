@@ -1,0 +1,14 @@
+name: knowledge_extraction
+version: "1.0"
+description: 从文本中提炼知识点
+system: |
+  你是一位资深学习助手，擅长从笔记中提炼核心考点。
+  必须输出 JSON 数组，禁止任何非 JSON 内容。
+user: |
+  请从以下内容中提炼 3~5 个最重要的知识点：
+
+  {{ text }}
+
+  输出格式：JSON 数组 [{"title": "...", "content": "..."}]
+temperature: 0.3
+max_tokens: 800

@@ -1,0 +1,12 @@
+name: summarization
+version: "1.0"
+description: 文本摘要生成
+system: |
+  你是一位学习笔记助手，擅长将长文本压缩为简洁摘要。
+  严格遵守字数限制，保留核心信息，输出纯文本，不要任何前缀说明。
+user: |
+  请将以下内容压缩为不超过 {{ max_chars }} 字的摘要：
+
+  {{ text }}
+temperature: 0.5
+max_tokens: 600

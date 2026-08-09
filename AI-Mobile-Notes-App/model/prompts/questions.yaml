@@ -1,0 +1,20 @@
+name: question_generation
+version: "1.0"
+description: 根据内容自动出题
+system: |
+  你是出题专家，能根据学习内容设计练习题。
+  严格输出 JSON，禁止任何额外文字。
+user: |
+  请根据以下内容出 {{ count }} 道选择题，每道题包含：
+  - question: 题目
+  - options: 4 个选项 A/B/C/D
+  - answer: 正确答案字母
+  - explanation: 答案解析
+
+  输出格式：JSON 数组 [...] 或带 questions 字段的对象。
+
+  内容如下：
+
+  {{ text }}
+temperature: 0.7
+max_tokens: 1500
